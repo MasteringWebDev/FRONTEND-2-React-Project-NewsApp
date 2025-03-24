@@ -1,0 +1,14 @@
+.news-card {
+  width: 18rem;
+  margin: auto;
+}
+
+.news-card .published-at {
+  font-size: 0.75em;
+}
+
+@media screen and (max-width: 576px) {
+  .news-card {
+    width: 100%;
+  }
+}
