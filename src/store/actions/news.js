@@ -16,13 +16,14 @@ export const fetchNewsFailed = (error) => ({
   payload: error.message
 })
 
-export const fetchNews = () => {
+export const fetchNews = (category, defaultCategory) => {
   const API_ENDPOINT = 'https://newsapi.org/v2/top-headlines'
-  const API_KEY = 'f40203cc39184176a487521beaf0836b'  
+  const API_KEY = import.meta.env.VITE_NEWS_API_KEY  
+
   return async (dispatch) => {
     try {
       dispatch(fetchNewsRequested())
-      const res = await fetch(`${API_ENDPOINT}?apiKey=${API_KEY}&country=us`)
+      const res = await fetch(`${API_ENDPOINT}?apiKey=${API_KEY}&country=us&category=${category || defaultCategory}`)
       const jsonRes = await res.json()
       dispatch(fetchNewsSuccess(jsonRes.articles))
     } catch (error) {

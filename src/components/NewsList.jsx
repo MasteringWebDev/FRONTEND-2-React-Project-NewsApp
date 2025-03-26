@@ -3,14 +3,16 @@ import { Row, Col } from 'react-bootstrap'
 import NewsCard from './NewsCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNews } from '../store/actions/news'
+import { useParams } from 'react-router-dom';
 
-const NewsList = () => {
+const NewsList = ({ categories, defaultCategory }) => {
   const news = useSelector((state) => state.data)
   const dispatch = useDispatch()
+  const { category } = useParams()
 
   useEffect(() => {
-    dispatch(fetchNews())
-  }, [])
+    dispatch(fetchNews(category, defaultCategory))
+  }, [category])
 
   return (
     <Row>

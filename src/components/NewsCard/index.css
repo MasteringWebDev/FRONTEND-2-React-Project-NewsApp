@@ -5,6 +5,7 @@
 
 .news-card .news-img {
   aspect-ratio: 7 / 4;
+  border-radius: 0;
 }
 
 .news-card .news-title {

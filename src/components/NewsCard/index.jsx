@@ -2,7 +2,11 @@ import './index.css'
 import Card from 'react-bootstrap/Card';
 
 function NewsCard({ article }) {
-  const publishedAt = new Date(article.publishedAt).toLocaleDateString("en-US", { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })
+  const fallbackImage = 'https://img.freepik.com/premium-vector/newspaper-with-breaking-news-scraps-newspaper-pages-background-urgent-news_47243-1756.jpg'
+  
+  const fallbackDescription = `
+    Stay updated with the latest details! Click 'Read More' to explore the full news story and stay informed
+  `
 
   return (
     <Card className='news-card'>
@@ -11,12 +15,12 @@ function NewsCard({ article }) {
       >
         <span>{article.source.name}</span>
         <span className='text-muted published-at'>
-          {publishedAt}
+          {new Date(article.publishedAt).toLocaleTimeString()}
         </span>   
       </Card.Header>
       <Card.Img 
         variant="top" 
-        src={article.urlToImage}
+        src={article.urlToImage || fallbackImage}
         className='news-img'
       />
       <Card.Body>
@@ -32,9 +36,9 @@ function NewsCard({ article }) {
           style={{ textAlign: 'justify' }}
         >
           {
-            article.description.length <= 150
-              ? article.description
-              : `${article.description.slice(0, 150)}...`
+            article.description && article.description.length > 150
+              ? `${article.description.slice(0, 150)}...`
+              : (article.description || fallbackDescription) 
           }
         </Card.Text>
         <a 
