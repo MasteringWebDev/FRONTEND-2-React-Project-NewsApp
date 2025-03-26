@@ -3,6 +3,18 @@
   margin: auto;
 }
 
+.news-card .news-img {
+  aspect-ratio: 7 / 4;
+}
+
+.news-card .news-title {
+  min-height: 5em;
+}
+
+.news-card .news-content {
+  min-height: 7.5em;
+}
+
 .news-card .published-at {
   font-size: 0.75em;
 }
