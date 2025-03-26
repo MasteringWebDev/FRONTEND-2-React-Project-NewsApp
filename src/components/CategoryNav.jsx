@@ -1,13 +1,8 @@
-import { useEffect } from 'react'
 import { Nav } from 'react-bootstrap'
 import { Link, useLocation } from "react-router-dom";
 
 const CategoryNav = ({ categories , defaultCategory }) => {
   let location = useLocation()
-
-  useEffect(() => {
-    console.log(location)
-  }, [location])
 
   return (
     <div>
