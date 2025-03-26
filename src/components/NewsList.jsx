@@ -1,26 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap'
 import NewsCard from './NewsCard';
-
-const API_ENDPOINT = 'https://newsapi.org/v2/top-headlines'
-const API_KEY = 'f40203cc39184176a487521beaf0836b'
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchNews } from '../store/actions/news'
 
 const NewsList = () => {
-  const [news, setNews] = useState([])
+  const news = useSelector((state) => state.data)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    fetchNews()
+    dispatch(fetchNews())
   }, [])
-
-  const fetchNews = async () => {
-    try {
-      const res = await fetch(`${API_ENDPOINT}?apiKey=${API_KEY}&country=us`)
-      const jsonRes = await res.json()
-      setNews(jsonRes.articles)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
     <Row>
